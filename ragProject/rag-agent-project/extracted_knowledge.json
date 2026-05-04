@@ -1,0 +1,175 @@
+{
+  "items": {
+    "decisions": [
+      {
+        "id": "dec-001",
+        "title": "The Watchtower Cursor Rules",
+        "summary": "מסמך זה מגדיר את הכללים והנחיות ה-Watchtower Cursor, המכסים נושאים כגון סטנדרטים של RAG, פיתוח Backend ו-Frontend, רישום אירועים, חוסן ואבטחה.",
+        "tags": [
+          "rag",
+          "backend",
+          "frontend",
+          "audit",
+          "resilience",
+          "security"
+        ],
+        "source": {
+          "tool": "Cursor",
+          "file": "c:\\Users\\user1\\Desktop\\תכנות\\תשפו_בסד\\AI\\rag\\meta-observer-target\\.cursor\\rules.md"
+        },
+        "observed_at": "2026-05-03T21:13:43.751321"
+      },
+      {
+        "id": "dec-001",
+        "title": "פיתוח פלטפורמה ייעודית",
+        "summary": "יצירת פלטפורמה לתמיכה בצוותים טכניים, המאפשרת עיבוד, חיפוש וניתוח של אירועי מערכת באמצעות RAG (Retrieval-Augmented Generation).",
+        "tags": [
+          "platform",
+          "technical"
+        ],
+        "source": {
+          "tool": "Claude Code",
+          "file": "c:\\Users\\user1\\Desktop\\תכנות\\תשפו_בסד\\AI\\rag\\meta-observer-target\\.claude\\project-brief.md"
+        },
+        "observed_at": "2026-05-03T21:14:21.796116"
+      }
+    ],
+    "rules": [
+      {
+        "id": "rule-001",
+        "rule": "RAG Standards: שימוש ב-RecursiveCharacterTextSplitter עם chunk_size=500 ו-overlap=50. שימוש ב-sentence-transformers/all-MiniLM-L6-v2 להטמעות במהלך פיתוח מקומי. מניעת PII ב-vector store ושימוש ב-utils.mask_pii לפני אינדקס.",
+        "scope": "rag",
+        "source": {
+          "tool": "Cursor",
+          "file": "c:\\Users\\user1\\Desktop\\תכנות\\תשפו_בסד\\AI\\rag\\meta-observer-target\\.cursor\\rules.md"
+        },
+        "observed_at": "2026-05-03T21:13:43.751321"
+      },
+      {
+        "id": "rule-002",
+        "rule": "Backend (FastAPI): כל פעולות DB ו-Vector Store חייבות להיות Async. שימוש ב-Pydantic models לכל בקשות/תגובות API. אין להשתמש ב-generic Dicts.",
+        "scope": "backend",
+        "source": {
+          "tool": "Cursor",
+          "file": "c:\\Users\\user1\\Desktop\\תכנות\\תשפו_בסד\\AI\\rag\\meta-observer-target\\.cursor\\rules.md"
+        },
+        "observed_at": "2026-05-03T21:13:43.751321"
+      },
+      {
+        "id": "rule-003",
+        "rule": "Frontend (React): שימוש ב-Shadcn/UI (Radix UI) באופן בלעדי. שימוש ב-TanStack Query למצב שרת. ציון ציוני ביטחון בצבעים (ירוק > 0.8, צהוב > 0.5, אדום < 0.5).",
+        "scope": "frontend",
+        "source": {
+          "tool": "Cursor",
+          "file": "c:\\Users\\user1\\Desktop\\תכנות\\תשפו_בסד\\AI\\rag\\meta-observer-target\\.cursor\\rules.md"
+        },
+        "observed_at": "2026-05-03T21:13:43.751321"
+      },
+      {
+        "id": "rule-004",
+        "rule": "Audit Logging: שמירת רישום ב-backend/data/audit_log.json. חובה להסוות IPs ומפתחות API. שמירת רישומים ל-30 יום.",
+        "scope": "audit",
+        "source": {
+          "tool": "Cursor",
+          "file": "c:\\Users\\user1\\Desktop\\תכנות\\תשפו_בסד\\AI\\rag\\meta-observer-target\\.cursor\\rules.md"
+        },
+        "observed_at": "2026-05-03T21:13:43.751321"
+      },
+      {
+        "id": "rule-005",
+        "rule": "Resilience & Retries: עד 3 ניסיונות עם backoff אקספוננציאלי לכל קריאות AI/DB. מעבר למצב בטוח אם latency של Vector DB עולה על 5 שניות או status != 200. הפעלת Circuit Breaker לאחר 5 כשלונות רצופים.",
+        "scope": "resilience",
+        "source": {
+          "tool": "Cursor",
+          "file": "c:\\Users\\user1\\Desktop\\תכנות\\תשפו_בסד\\AI\\rag\\meta-observer-target\\.cursor\\rules.md"
+        },
+        "observed_at": "2026-05-03T21:13:43.751321"
+      },
+      {
+        "id": "rule-006",
+        "rule": "Prohibitions: אסור להשתמש ב-print(). יש להשתמש ב-structlog או ב-logging הסטנדרטי. אסור לקודד את נתיב Vector DB. יש להשתמש ב-VECTOR_DB_PATH env var.",
+        "scope": "security",
+        "source": {
+          "tool": "Cursor",
+          "file": "c:\\Users\\user1\\Desktop\\תכנות\\תשפו_בסד\\AI\\rag\\meta-observer-target\\.cursor\\rules.md"
+        },
+        "observed_at": "2026-05-03T21:13:43.751321"
+      },
+      {
+        "id": "rule-001",
+        "rule": "לעבד דו\"חות אירועים בפורמטים JSON ו-Markdown.",
+        "scope": "incident_ingestion",
+        "source": {
+          "tool": "Claude Code",
+          "file": "c:\\Users\\user1\\Desktop\\תכנות\\תשפו_בסד\\AI\\rag\\meta-observer-target\\.claude\\project-brief.md"
+        },
+        "observed_at": "2026-05-03T21:14:21.796116"
+      },
+      {
+        "id": "rule-002",
+        "rule": "לבצע חיפוש קונטקסטואלי במאגר הווקטור כדי לזהות בעיות דומות בעבר.",
+        "scope": "contextual_search",
+        "source": {
+          "tool": "Claude Code",
+          "file": "c:\\Users\\user1\\Desktop\\תכנות\\תשפו_בסד\\AI\\rag\\meta-observer-target\\.claude\\project-brief.md"
+        },
+        "observed_at": "2026-05-03T21:14:21.796116"
+      },
+      {
+        "id": "rule-003",
+        "rule": "לזהות ולטשטש באופן אוטומטי נתונים רגישים (PII) לפני הטמעתם.",
+        "scope": "pii_masking",
+        "source": {
+          "tool": "Claude Code",
+          "file": "c:\\Users\\user1\\Desktop\\תכנות\\תשפו_בסד\\AI\\rag\\meta-observer-target\\.claude\\project-brief.md"
+        },
+        "observed_at": "2026-05-03T21:14:21.796116"
+      },
+      {
+        "id": "rule-004",
+        "rule": "לכל תגובה של ה-AI צריך להיות ניקוד המבוסס על רלוונטיות המסמך.",
+        "scope": "confidence_scoring",
+        "source": {
+          "tool": "Claude Code",
+          "file": "c:\\Users\\user1\\Desktop\\תכנות\\תשפו_בסד\\AI\\rag\\meta-observer-target\\.claude\\project-brief.md"
+        },
+        "observed_at": "2026-05-03T21:14:21.796116"
+      }
+    ],
+    "warnings": [
+      {
+        "id": "warn-001",
+        "area": "Time-to-Resolution (TTR)",
+        "message": "הפלטפורמה נועדה לצמצם את זמן התיקון על ידי הצגת פתרונות היסטוריים.",
+        "severity": "medium",
+        "source": {
+          "tool": "Claude Code",
+          "file": "c:\\Users\\user1\\Desktop\\תכנות\\תשפו_בסד\\AI\\rag\\meta-observer-target\\.claude\\project-brief.md"
+        },
+        "observed_at": "2026-05-03T21:14:21.796116"
+      },
+      {
+        "id": "warn-002",
+        "area": "Vector Database",
+        "message": "יש לשמור על מאגר וקטורים נקי ומדויק.",
+        "severity": "high",
+        "source": {
+          "tool": "Claude Code",
+          "file": "c:\\Users\\user1\\Desktop\\תכנות\\תשפו_בסד\\AI\\rag\\meta-observer-target\\.claude\\project-brief.md"
+        },
+        "observed_at": "2026-05-03T21:14:21.796116"
+      },
+      {
+        "id": "warn-003",
+        "area": "Privacy",
+        "message": "יש להבטיח פרטיות קפדנית על ידי מניעת שליחת נתונים רגישים (PII) גולמיים ל-LLM.",
+        "severity": "high",
+        "source": {
+          "tool": "Claude Code",
+          "file": "c:\\Users\\user1\\Desktop\\תכנות\\תשפו_בסד\\AI\\rag\\meta-observer-target\\.claude\\project-brief.md"
+        },
+        "observed_at": "2026-05-03T21:14:21.796116"
+      }
+    ]
+  }
+}

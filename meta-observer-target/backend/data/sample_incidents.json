@@ -1,0 +1,16 @@
+[
+    {
+        "id": "INC-001",
+        "service": "auth-service",
+        "severity": "CRITICAL",
+        "timestamp": "2024-03-10T14:30:00Z",
+        "content": "ERROR: Connection timeout to Redis at 10.0.1.5:6379. All session validation failing. FIX: Rebooted node-04 and cleared stale connections."
+    },
+    {
+        "id": "INC-002",
+        "service": "payment-gateway",
+        "severity": "HIGH",
+        "timestamp": "2024-03-12T09:15:00Z",
+        "content": "WARNING: Latency increased to 1500ms for /v1/charge. Root cause: Stripe API rate limit reached due to missing retry exponential backoff. Mapped key: SK_LIVE_REDACTED_PII."
+    }
+]
