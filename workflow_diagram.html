@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agentic RAG Workflow Diagram</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            max-width: 900px;
+            width: 100%;
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .mermaid {
+            display: flex;
+            justify-content: center;
+        }
+        .legend {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Agentic RAG Workflow Diagram</h1>
+        
+        <div class="mermaid">
+            graph TD
+                %% Nodes
+                Start([User Query Input])
+                Validate[Input Validation & <br/> Query Rewriting]
+                Router{Event Router <br/> (LLM Decision)}
+                Semantic[Semantic Search <br/> (Vector Store)]
+                Structured[Structured Search <br/> (JSON Knowledge Base)]
+                CheckResults{Results Found?}
+                Fallback[Broad Search <br/> (Fallback Mechanism)]
+                Synthesize[Response Synthesis <br/> (LLM)]
+                End([Final Response])
+
+                %% Flow
+                Start --> Validate
+                Validate --> Router
+                Router -- "Conceptual/Semantic" --> Semantic
+                Router -- "Structured/Lists" --> Structured
+                Semantic --> CheckResults
+                CheckResults -- "Yes" --> Synthesize
+                CheckResults -- "No" --> Fallback
+                Fallback --> Synthesize
+                Structured --> Synthesize
+                Synthesize --> End
+
+                %% Styling
+                style Start fill:#f9f,stroke:#333,stroke-width:2px
+                style End fill:#f9f,stroke:#333,stroke-width:2px
+                style Router fill:#fff4dd,stroke:#d4a017,stroke-width:2px
+                style Validate fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+                style Semantic fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px
+                style Structured fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px
+                style Fallback fill:#fff3e0,stroke:#e65100,stroke-width:2px
+                style Synthesize fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+        </div>
+
+        <div class="legend">
+            <strong>Workflow Highlights:</strong>
+            <ul>
+                <li><strong>Query Rewriting:</strong> Leverages chat history to transform ambiguous follow-ups into standalone queries.</li>
+                <li><strong>Router:</strong> An LLM-based decision point that directs queries to the most efficient retrieval path.</li>
+                <li><strong>Semantic vs Structured:</strong> Distinguishes between "soft" document retrieval and precise data extraction from structured JSON.</li>
+                <li><strong>Fallback:</strong> A safety mechanism that ensures an answer is provided even when initial high-quality thresholds aren't met.</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        mermaid.initialize({ 
+            startOnLoad: true,
+            theme: 'base',
+            themeVariables: {
+                primaryColor: '#ffffff',
+                edgeColor: '#2c3e50',
+                fontFamily: 'Segoe UI'
+            }
+        });
+    </script>
+</body>
+</html>
